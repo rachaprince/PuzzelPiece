@@ -2,10 +2,11 @@ class WallpostsController < ApplicationController
   before_action :signed_in_user
 
   def create
-  	@wallpost = current_user.wallposts.build(wallpost_params)
+    wallpost_params[:author] = current_user.id
+  	@wallpost = User.find(params[:id]).wallposts.build(wallpost_params)
   	if @wallpost.save
   		flash[:success] = "Wallpost Created!"
-  		redirect_back_or root_url
+  		redirect_to :back
   	else
   		render 'static_pages/home'
   	end 
