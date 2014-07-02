@@ -1,0 +1,16 @@
+<% provide(:title, 'Teams') %>
+<h1>Create Your Team!</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@team) do |f| %>
+    	<%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "Create my Team", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Remember to put a create-team button in the user profile! -->
