@@ -7,9 +7,14 @@
         <%= @user.name %>
       </h1>
     </section>
+     <section>
+      <%= render 'shared/stats' %>
+    </section>
+    <section>
+      <%= render 'follow_form' if signed_in? %>
+    </section>
   </aside>
-   <div class="span8">
-   <%= render 'shared/wallpost_form' %>
+    <div class="span8">
     <% if @user.wallposts.any? %>
       <h3>Wallposts (<%= @user.wallposts.count %>)</h3>
       <ol class="wallposts">

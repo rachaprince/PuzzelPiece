@@ -1,8 +1,13 @@
 PuzzlePiece::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end 
+  end 
   resources :teams
   resources :sessions, only: [:new, :create, :destroy]
   resources :wallposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   root 'static_pages#home'
   match '/new_team', to: 'teams#new', via: 'get'
   match '/signup', to: 'users#new', via: 'get' 

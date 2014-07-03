@@ -5,10 +5,19 @@
         <%= render 'shared/user_info' %>
       </section>
       <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
         <%= render 'shared/wallpost_form' %>
       </section>
-    </aside>
-  </div>
+    </aside> 
+    <div class="span8">
+      <h3>Your Wall</h3>
+        <%= render 'shared/feed' %>
+      <h3>News Feed</h3>
+        <%= render 'shared/feed' %>
+    </div> 
+ </div>
 <% else %>
 <div class="center hero-unit">
     <h1>Welcome to Puzzle Piece</h1>
