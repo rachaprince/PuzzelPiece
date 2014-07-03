@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
                                     class_name: "Relationship",
                                     dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_one :wall, dependent: :destroy
+  has_many :wall_posts, through: :walls, source: :post
+
+
+
+
   before_save { self.email = email.downcase }
 	validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -37,6 +43,14 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end 
+
+  def posts?(recipient)
+    walls.find_by(recipient_id: recipient.id)
+  end 
+
+  def create_post!(post)
+    walls.find_by(recipient_id: params[:id]).posts.create(post: post)
+  end
 
   private 
   	def create_remember_token

@@ -3,8 +3,10 @@ class WallpostsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def create
+    @wall = Wall.find(params[:id]).wall
   	@wallpost = current_user.wallposts.build(wallpost_params)
   	if @wallpost.save
+      create_post!(@wallpost)
   		flash[:success] = "Wallpost Created!"
   		redirect_back_or root_url
   	else

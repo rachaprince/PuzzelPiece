@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702231025) do
+ActiveRecord::Schema.define(version: 20140703153226) do
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -53,8 +53,21 @@ ActiveRecord::Schema.define(version: 20140702231025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
+    t.integer  "wall_id"
   end
 
   add_index "wallposts", ["user_id", "created_at"], name: "index_wallposts_on_user_id_and_created_at"
+  add_index "wallposts", ["wall_id"], name: "index_wallposts_on_wall_id"
+
+  create_table "walls", force: true do |t|
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "walls", ["post_id"], name: "index_walls_on_post_id"
+  add_index "walls", ["post_id"], name: "index_walls_on_recipient_id_and_post_id", unique: true
+  add_index "walls", ["user_id"], name: "index_walls_on_user_id"
 
 end
