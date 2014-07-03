@@ -1,0 +1,15 @@
+<h1>Listing Walls</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+ 
+  <% @walls.each do |wall| %>
+    <tr>
+      <td><%= wall.name %></td>
+      <td><%= wall.description %></td>
+    </tr>
+  <% end %>
+</table>

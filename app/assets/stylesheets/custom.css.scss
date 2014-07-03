@@ -4,22 +4,6 @@
 
 $grayMediumLight: #eaeaea;
 
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* miscellaneous */
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-
 /* universal */
 
 html {
@@ -44,7 +28,6 @@ textarea {
     margin-bottom: 10px;
   }
 }
-
 
 /* typography */
 
@@ -72,7 +55,6 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
 
 /* header */
 
@@ -116,6 +98,26 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }
 /* sidebar */
 
@@ -176,7 +178,6 @@ aside {
   }
 }
 
-
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -189,7 +190,6 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
-
 #error_explanation {
   color: #f00;
   ul {
@@ -203,7 +203,7 @@ input {
   @extend .error;
 }
 
-/* Users & Teams index */
+/* Users index */
 
 .users {
   list-style: none;
@@ -218,33 +218,15 @@ input {
   }
 }
 
-/* Teams index */
+/* microposts */
 
-.teams {
-  font-size: 15px;
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
-    }
-  }
-}
-/* wallposts */
-
-.wallposts {
+.microposts {
   list-style: none;
   margin: 10px 0 0 0;
+
   li {
-    overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
-    }
+    border-top: 1px solid #e8e8e8;
   }
 }
 .content {
@@ -263,5 +245,3 @@ aside {
     margin-bottom: 5px;
   }
 }
-
-

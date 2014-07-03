@@ -1,11 +1,10 @@
 class CreateWallposts < ActiveRecord::Migration
   def change
     create_table :wallposts do |t|
-      t.string :content
-      t.string :user_id
+      t.text :content
+      t.references :wall, index: true
 
       t.timestamps
     end
-    add_index :wallposts, [:user_id, :created_at]
   end
 end

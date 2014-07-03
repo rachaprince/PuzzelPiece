@@ -8,27 +8,23 @@
         <%= render 'shared/stats' %>
       </section>
       <section>
-        <%= render 'shared/wallpost_form' %>
+        <%= render 'shared/micropost_form' %>
       </section>
-    </aside> 
+    </aside>
     <div class="span8">
-      <h3>Your Wall</h3>
-        <%= render 'shared/feed' %>
       <h3>News Feed</h3>
-        <%= render 'shared/feed' %>
-    </div> 
- </div>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
 <% else %>
-<div class="center hero-unit">
-    <h1>Welcome to Puzzle Piece</h1>
+  <div class="center hero-unit">
+    <h1>Welcome to the Puzzle Piece</h1>
 
     <h2>
-      This is the Home Page of the Puzzle Piece Entrepreneurial Platform. Share your Ideas, build Teams, and develop meaningful and impactful products!
+      Puzzle Piece is a social platform designed to connect innovative and entreprenurial minds with the teammates and the tools they need to bring their ideas to life! 
     </h2>
 
     <%= link_to "Sign up now!", signup_path,
                                 class: "btn btn-large btn-primary" %>
   </div>
-  <% end %>
-
-  
+<% end %>
