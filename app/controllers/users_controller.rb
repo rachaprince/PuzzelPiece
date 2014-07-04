@@ -9,7 +9,9 @@ before_action :admin_user, only: :destroy
 
   def show
   	@user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @wall = @user.wall
+    @wallpost = @wall.wallposts.build
+    @wall_items = @wall.wallposts.paginate(page: params[:page], per_page: 10)
   end
   
   def new
@@ -19,6 +21,7 @@ before_action :admin_user, only: :destroy
   def create
   	@user = User.new(user_params)
   	if @user.save
+      Wall.create(name: @user.name, user_id: @user.id)
       sign_in @user
   		flash[:success]= "Welcome to the Sample App!"
   		redirect_to @user

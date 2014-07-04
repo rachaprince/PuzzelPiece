@@ -1,9 +1,10 @@
 class WallpostsController < ApplicationController
 
 	def create
-		@wall = Wall.find(params[:wall_id])
-		@wallpost = @wall.wallposts.create(wallpost_params)
-		redirect_to wall_path(@wall)
+		@user = User.find(params[:wall_id])
+		@wall = @user.wall
+		@wallpost = @wall.wallposts.build(wallpost_params)
+		redirect_to @user
 	end 
 
 	private

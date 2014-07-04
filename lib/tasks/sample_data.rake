@@ -4,6 +4,8 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_walls
+    make_wallposts
   end
 end
 
@@ -29,6 +31,19 @@ def make_microposts
   50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }
+  end
+end
+
+def make_walls
+  users = User.all
+  users.each { |user| Wall.create(name: user.name, user_id: user.id)}
+end 
+
+def make_wallposts
+  users = User.all(limit: 6)
+  50.times do
+    content = Faker::Lorem.sentence(5)
+    users.each { |user| user.wall.wallposts.create!(content: content) }
   end
 end
 

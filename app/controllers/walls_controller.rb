@@ -11,6 +11,7 @@ class WallsController < ApplicationController
 
 	def show
 		@wall = Wall.find(params[:id])
+		@wallpost = @wall.wallposts.build
 	end 
 
 	def index
@@ -19,6 +20,6 @@ class WallsController < ApplicationController
 
 	private
 		def wall_params
-			params.require(:wall).permit(:name, :description)
+			params.require(:wall).permit(:name, :description, :user_id)
 		end 
 end
