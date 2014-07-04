@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703200831) do
+ActiveRecord::Schema.define(version: 20140704044134) do
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(version: 20140703200831) do
     t.integer  "wall_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
+  add_index "wallposts", ["user_id"], name: "index_wallposts_on_user_id"
   add_index "wallposts", ["wall_id"], name: "index_wallposts_on_wall_id"
 
   create_table "walls", force: true do |t|

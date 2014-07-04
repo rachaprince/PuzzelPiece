@@ -11,7 +11,7 @@ before_action :admin_user, only: :destroy
   	@user = User.find(params[:id])
     @wall = @user.wall
     @wallpost = @wall.wallposts.build
-    @wall_items = @wall.wallposts.paginate(page: params[:page], per_page: 10)
+    @wallposts = User.find(params[:id]).wall.wallposts.paginate(page: params[:page], per_page: 10)
   end
   
   def new

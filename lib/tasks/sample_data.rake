@@ -43,7 +43,7 @@ def make_wallposts
   users = User.all(limit: 6)
   50.times do
     content = Faker::Lorem.sentence(5)
-    users.each { |user| user.wall.wallposts.create!(content: content) }
+    users.each { |user| user.wall.wallposts.create!(content: content, user_id: user.id) }
   end
 end
 

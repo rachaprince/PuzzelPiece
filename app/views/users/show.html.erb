@@ -12,15 +12,17 @@
     </section>
     <%= render 'follow_form' if signed_in? %>
   </aside>
-    <div class="span8">
+    <div class="span6">
     <% unless @user.wall.blank? %>
       <h3><%=@user.name%>'s Wall</h3>
     <%= render 'shared/wallpost_form' %>  
-      <ol class="microposts">
-        <%= render @wall_items %>
-      </ol>
+      <% @wallposts.each do |wallpost| %>
+        <ol class="microposts">
+          <%= User.find(wallpost.user_id).name %>
+          <%= render wallpost %>
+        </ol>
+      <% end %>
+      <%= will_paginate @wallposts, inner_window: 1 %>
     <% end %>
-   
-      <%= will_paginate @wall_items %>
   </div>
 </div>
