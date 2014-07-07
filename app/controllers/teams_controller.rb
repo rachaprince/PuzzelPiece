@@ -12,7 +12,9 @@ class TeamsController < ApplicationController
     @users = @team.users
     if params[:email] != nil
       user = User.find_by(email: params[:email])
+      unless @team.users.include?(user)
         user.teams << @team
+      end
     end 
     @bio = @team.bio
   end
