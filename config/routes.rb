@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
   get "teams/new"
+  post "teams/:id" => "teams#show"
   resources :users do 
     member do 
       get :following, :followers
