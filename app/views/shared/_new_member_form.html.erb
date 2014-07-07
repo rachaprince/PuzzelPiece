@@ -3,8 +3,9 @@
    <%= form_for(@member) do |f| %>
   		<%= f.label :email %>
       	<%= f.text_field :email %>
-      	<%=@member.name %>
+
       	<%= f.submit "Add Member", class: "btn btn-large btn-primary" %>
     <% end %>
+    <%=@member.name %>
    </div>
 </div>
