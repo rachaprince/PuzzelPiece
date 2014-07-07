@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
 	has_and_belongs_to_many :users
-	has_one :messageboard
+	has_one :messageboard, dependent: :destroy
 	validates :name, presence: true, length: { maximum: 50 },
 					uniqueness: { case_sensitive: false }
 
