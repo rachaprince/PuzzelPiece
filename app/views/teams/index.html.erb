@@ -1,10 +1,11 @@
-<% provide(:title, 'All Teams') %>
-<h1>All Teams</h1>
-<br>
+<% provide(:title, 'Teams') %>
+<h1>Teams</h1>
+<div class="text-center">
 <%= link_to "Create Team", new_team_path, class: "btn btn-small btn-primary" %>
+</div>
 <%= will_paginate %>
 
-<ul class="teams">
+<ul class="users">
     <%= render @teams %>
 </ul>
 

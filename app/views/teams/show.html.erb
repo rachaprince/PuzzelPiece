@@ -8,9 +8,16 @@
       </h1>
 
     </section>
-    <section>
+    <section class="users">
     	<%= render @users %>
     </section>
+    <section class=>
     <%= render 'shared/new_member_form' %>
+    </section>
+  </aside>
+  <aside class="text-center hero-unit span6 pull-right">
+      <h3><%=@team.name%>'s Bio</h3>
+      <%= @team.bio %>
   </aside>
 </div>
+

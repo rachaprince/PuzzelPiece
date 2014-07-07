@@ -9,8 +9,12 @@ class TeamsController < ApplicationController
 
   def show
   	@team = Team.find(params[:id])
-    @users =@team.users
-    @member =User.find_by(params[:email])
+    @users = @team.users
+    if params[:email] != nil
+      user = User.find_by(email: params[:email])
+        user.teams << @team
+    end 
+    @bio = @team.bio
   end
 
   def new
@@ -50,7 +54,7 @@ class TeamsController < ApplicationController
 
   private
   	def team_params
-  		params.require(:team).permit(:name)
+  		params.require(:team).permit(:name, :bio)
   	end 
 
     def signed_in_user
