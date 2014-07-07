@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_one :wall, dependent: :destroy
   has_many :wallposts, dependent: :destroy
+  has_and_belongs_to_many :teams
 
 
 

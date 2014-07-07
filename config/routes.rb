@@ -1,4 +1,5 @@
 SampleApp::Application.routes.draw do
+  get "teams/new"
   resources :users do 
     member do 
       get :following, :followers

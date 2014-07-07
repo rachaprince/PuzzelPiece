@@ -18,7 +18,8 @@
     <%= render 'shared/wallpost_form' %>  
       <% @wallposts.each do |wallpost| %>
         <ol class="microposts">
-          <%= User.find(wallpost.user_id).name %>
+        <%= link_to gravatar_small(User.find(wallpost.user_id)), User.find(wallpost.user_id) %>
+          <%= link_to User.find(wallpost.user_id).name, User.find(wallpost.user_id) %>
           <%= render wallpost %>
         </ol>
       <% end %>
