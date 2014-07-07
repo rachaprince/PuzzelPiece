@@ -15,7 +15,7 @@ before_action :admin_user, only: :destroy
   end
   
   def new
-  	@user = User.new
+  	@user = User.new  
   end
 
   def create

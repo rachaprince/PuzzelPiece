@@ -15,9 +15,14 @@
     <%= render 'shared/new_member_form' %>
     </section>
   </aside>
-  <aside class="text-center hero-unit span6 pull-right">
+  <div class="text-center hero-unit span6 pull-right">
+    <aside>
       <h3><%=@team.name%>'s Bio</h3>
       <%= @team.bio %>
-  </aside>
+    </aside>
+    <aside class="text-right">
+     <%= link_to "Edit", edit_team_path, class: "btn btn-small btn-primary" %>
+     </aside>
+  </div>
 </div>
 
