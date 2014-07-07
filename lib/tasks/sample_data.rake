@@ -15,6 +15,11 @@ def make_users
                        password: "barkley",
                        password_confirmation: "barkley",
                        admin: true)
+    admin2 = User.create!(name:     "Rachel Prince",
+                       email:    "rachel@railstutorial.org",
+                       password: "chester",
+                       password_confirmation: "chester",
+                       admin: true)
   99.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"

@@ -1,0 +1,10 @@
+<% @user ||= current_user %>
+<div class='team_stats'>
+ 
+    <strong id="Teams" class="stat">
+      <%= @user.teams.count %> Teams
+      
+    </strong>
+ </div>
+ <%= render  @teams  %>
+  <%= link_to "Create Team", new_team_path, class: "btn btn-medium btn-primary white"   %>
