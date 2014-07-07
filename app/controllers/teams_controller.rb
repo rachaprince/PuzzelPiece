@@ -17,8 +17,6 @@ class TeamsController < ApplicationController
       end
     end 
     @bio = @team.bio
-    @messageboard = @team.messageboard
-    @messages = @team.messageboard.messages.paginate(page: params[:page], per_page: 10)
   end
 
   def new
