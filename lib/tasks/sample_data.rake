@@ -15,7 +15,7 @@ def make_users
                        password: "barkley",
                        password_confirmation: "barkley",
                        admin: true)
-  admin2 = User.create!(name:     "Rachel Prince",
+    admin2 = User.create!(name:     "Rachel Prince",
                        email:    "rachel@railstutorial.org",
                        password: "chester",
                        password_confirmation: "chester",

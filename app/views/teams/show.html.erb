@@ -4,7 +4,13 @@
     <section>
       <h1>
         <%= @team.name %>
+
       </h1>
+
     </section>
+    <section>
+    	<%= render @users %>
+    </section>
+    <%= render 'shared/new_member_form' %>
   </aside>
 </div>

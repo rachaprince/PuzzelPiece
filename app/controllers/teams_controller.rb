@@ -9,6 +9,8 @@ class TeamsController < ApplicationController
 
   def show
   	@team = Team.find(params[:id])
+    @users =@team.users
+    @member =User.find_by(params[:email])
   end
 
   def new
@@ -32,6 +34,7 @@ class TeamsController < ApplicationController
   def create
   	@team = Team.new(team_params)
   	if @team.save
+      current_user.teams << @team
   		flash[:success] = "Team Successfully Created!"
   		redirect_to @team
   	else
