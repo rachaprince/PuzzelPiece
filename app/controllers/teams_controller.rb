@@ -18,6 +18,7 @@ class TeamsController < ApplicationController
     end 
     @bio = @team.bio
     @messageboard = @team.messageboard
+    @message = @messageboard.messages.build
     @messages = @team.messageboard.messages.paginate(page: params[:page], per_page: 10)
   end
 
@@ -42,6 +43,7 @@ class TeamsController < ApplicationController
   def create
   	@team = Team.new(team_params)
   	if @team.save
+      Messageboard.create(text: @team.name, team_id: @team.id)
       current_user.teams << @team
   		flash[:success] = "Team Successfully Created!"
   		redirect_to @team

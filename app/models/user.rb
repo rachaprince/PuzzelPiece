@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one :wall, dependent: :destroy
   has_many :wallposts, dependent: :destroy
   has_and_belongs_to_many :teams
+  has_many :messages 
 
 
 
