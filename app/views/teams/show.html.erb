@@ -1,18 +1,21 @@
+
+<% if @team.users.include?(User.find(current_user.id)) %>
 <% provide(:title, @team.name) %>
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
         <%= @team.name %>
-
       </h1>
-
     </section>
     <section class="users">
     	<%= render @users %>
     </section>
     <section class=>
     <%= render 'shared/new_member_form' %>
+    </section>
+    <section>
+    <%= render 'leave_team' %>
     </section>
   </aside>
   <div class="text-center hero-unit span6 pull-right">
@@ -25,26 +28,36 @@
      </aside>
   </div>
   <div class="hero-unit span6 pull-right">
-    <small><h3> Message Board </h3>
+    <h3> Message Board </h3>
       <%= render 'shared/message_form' %>
-        <% @messages.each do |message| %>
-          <ol class="microposts">
-          <span class="user">
-            <%= link_to gravatar_small(User.find(message.user_id)), User.find(message.user_id) %>
-            <%= link_to User.find(message.user_id).name, User.find(message.user_id) %>
-            </span>
-            <span class="content">
-            <%= message.content %>
-            </span>
-            <span class="timestamp">
-              Posted <%= time_ago_in_words(message.created_at) %> ago.
-            </span>
-          </ol>
-        <% end %>
+       <%= render 'shared/messages' %>
         <div class="pagination-small pagination-right">
     		<%= will_paginate @messages, inner_window: 1 %>
         </div>
-        </small>
+      </div>
+</div>
+<% else %>
+<% provide(:title, @team.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @team.name %>
+      </h1>
+    </section>
+    <section class="users">
+      <%= render @users %>
+    </section>
+  </aside>
+  <div class="text-center hero-unit span6 pull-right">
+    <aside>
+      <h3><%=@team.name%>'s Bio</h3>
+      <%= @team.bio %>
+    </aside>
+  </div>
+  <div class="hero-unit span6 pull-right">
+    <h3> Projects</h3>
   </div>
 </div>
+<% end %>
 

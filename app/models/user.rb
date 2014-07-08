@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_one :wall, dependent: :destroy
   has_many :wallposts, dependent: :destroy
-  has_and_belongs_to_many :teams
+  has_many :memberships, dependent: :destroy
+  has_many :teams, through: :memberships
   has_many :messages 
 
 
@@ -49,6 +50,14 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
+  end 
+
+  def member?(team)
+    memberships.find_by(team_id: team.id)
+  end 
+
+  def leave_team!(team)
+    memberships.find_by(team_id: team.id).destroy
   end 
 
   private

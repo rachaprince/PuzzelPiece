@@ -1,5 +1,0 @@
- <% if @messages.any? %>
-  <ol class="microposts">
-    <%= render partial: 'shared/messages', collection: @messages %> 
-  <%= will_paginate @messages, inner_window: 1 %>
-<% end %>

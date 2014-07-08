@@ -1,10 +1,14 @@
-<li>
-  <%= link_to gravatar_for(@message.user), @message.user %>
-    <span class="user">
-      <%= link_to @message.user.name, @message.user %>
+<% @messages.each do |message| %>
+  <ol class="microposts">
+  <span class="user">
+    <%= link_to gravatar_small(User.find(message.user_id)), User.find(message.user_id) %>
+    <%= link_to User.find(message.user_id).name, User.find(message.user_id) %>
     </span>
-    <span class="content"><%= @message.content %></span>
+    <span class="content">
+    <%= message.content %>
+    </span>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(@message.created_at) %> ago.
+      Posted <%= time_ago_in_words(message.created_at) %> ago.
     </span>
-</li>   
+  </ol>
+<% end %> 
