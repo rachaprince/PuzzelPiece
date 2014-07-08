@@ -10,7 +10,14 @@
      <section>
       <%= render 'shared/stats' %>
     </section>
+
     <%= render 'follow_form' if signed_in? %>
+    <section>
+      <%= render 'shared/team_stats' %>
+      </section>
+      <section>
+      <%= render 'shared/idea_stats' %>
+      </section>
   </aside>
     <div class="span6">
     <% unless @user.wall.blank? %>

@@ -9,6 +9,8 @@ before_action :admin_user, only: :destroy
 
   def show
   	@user = User.find(params[:id])
+    @teams =@user.teams
+    @ideas =@user.ideas
     @wall = @user.wall
     @wallpost = @wall.wallposts.build
     @wallposts = User.find(params[:id]).wall.wallposts.paginate(page: params[:page], per_page: 10)

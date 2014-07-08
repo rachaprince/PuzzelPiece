@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :teams
   has_many :memberships, dependent: :destroy
   has_many :teams, through: :memberships
-  has_many :messages 
+  has_many :messages
+  has_many :ideas 
 
 
 

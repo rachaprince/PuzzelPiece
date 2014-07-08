@@ -1,0 +1,8 @@
+	<li>
+
+      <%= link_to idea.name, idea %>
+        <% if current_user.admin? || current_user?(user.find(idea.user_id)) %>
+   		 | <%= link_to "delete", idea, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+	</li>

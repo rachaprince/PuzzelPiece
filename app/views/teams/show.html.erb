@@ -9,13 +9,16 @@
       </h1>
     </section>
     <section class="users">
-    	<%= render @users %>
+    Members:	<%= render @users %>
     </section>
-    <section class=>
+    <section >
     <%= render 'shared/new_member_form' %>
     </section>
     <section>
     <%= render 'leave_team' %>
+    </section>
+    <section class="users">
+    Ideas: <%= render @ideas %>
     </section>
   </aside>
   <div class="text-center hero-unit span6 pull-right">
@@ -46,7 +49,10 @@
       </h1>
     </section>
     <section class="users">
-      <%= render @users %>
+     Members: <%= render @users %>
+    </section>
+     <section class="users">
+    Ideas: <%= render @ideas %>
     </section>
   </aside>
   <div class="text-center hero-unit span6 pull-right">

@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
   def show
   	@team = Team.find(params[:id])
     @users = @team.users
+    @ideas= @team.ideas
     if params[:email] != nil
       user = User.find_by(email: params[:email])
       unless @team.users.include?(user)
