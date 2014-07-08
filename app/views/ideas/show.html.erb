@@ -10,12 +10,12 @@
     <section class="users">
      Author: <%= render @user %>
     </section>
-    <% unless @team==nil %>
+   <%unless @idea.team.blank? %>
     <section>
       Team: <%= render @team %>
     </section>
     <%end%>
-    <section>
+     <section>
       <%= render 'shared/new_project_form' %>
     </section>
         </aside>

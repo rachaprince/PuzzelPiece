@@ -11,7 +11,8 @@ class IdeasController < ApplicationController
 		if params[:name] != nil
       		team = Team.find_by(name: params[:name])
      		if @idea.team.blank?
-        		idea.team_id=team.id
+     			@idea.update(team_id: team.id)
+        		redirect_to @idea
      		end
     	end 
 	end
