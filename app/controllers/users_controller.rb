@@ -26,7 +26,7 @@ before_action :admin_user, only: :destroy
       ###
       Wall.create(name: @user.name, user_id: @user.id)
       Skill.count.times do |i|
-        if params[:skill][i] ==1
+        if params[:skill][i.to_s] =='1'
           binding.pry
          @user.skillsets.create!(user_id: @user.id, skill_id: i)
         end
