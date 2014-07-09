@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :teams, through: :memberships
   has_many :messages
   has_many :ideas 
+  has_many :skillsets
+  has_many :skills, through: :skillsets
 
 
 

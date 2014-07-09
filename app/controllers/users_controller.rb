@@ -23,7 +23,14 @@ before_action :admin_user, only: :destroy
   def create
   	@user = User.new(user_params)
   	if @user.save
+      ###
       Wall.create(name: @user.name, user_id: @user.id)
+      Skill.count.times do |i|
+        if params[:skill][i] ==1
+          binding.pry
+         @user.skillsets.create!(user_id: @user.id, skill_id: i)
+        end
+      end
       sign_in @user
   		flash[:success]= "Welcome to the Sample App!"
   		redirect_to @user
@@ -36,7 +43,17 @@ before_action :admin_user, only: :destroy
   end
 
   def update
+
     if @user.update_attributes(user_params)
+      Skill.count.times do |i|
+        unless params[:skill]==nil
+        if params[:skill][i.to_s] =='1'
+          
+         @user.skillsets.create!(user_id: @user.id, skill_id: i)
+        end
+        
+      end
+      end
       flash[:success] = "Profile updated"
       redirect_to @user
     else
