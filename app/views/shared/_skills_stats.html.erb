@@ -7,6 +7,15 @@
     </strong>
  </div>
  <div class="user">
+ 	<% skills = [] %>
+ 	<% @user.skillsets.each do |skillset| %>
+ 		<% skills.push(Skill.find(skillset.skill_id).name) %>
+ 	<% end %>
+ 	<% skills.each do |skill| %>
+ 		<div class="text-success">
+ 		<%= skill %>
+ 		</div>
+ 	<% end %>
 
  </div>
  
