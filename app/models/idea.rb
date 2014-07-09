@@ -4,4 +4,6 @@ class Idea < ActiveRecord::Base
 	validates :description, presence: true
 	validates :user_id, presence: true
 	belongs_to :team
+	has_many :requirements
+	has_many :skills, through: :requirements
 end

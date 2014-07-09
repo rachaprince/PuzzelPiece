@@ -24,6 +24,13 @@ class IdeasController < ApplicationController
 	def create
 		@idea= Idea.new(idea_params)
 		if @idea.save
+			Skill.count.times do |i|
+        		unless params[:skill]==nil
+        			if params[:skill][i.to_s] =='1'
+              		@idea.requirements.create!(idea_id: @idea.id, skill_id: i)
+        			end
+        		end
+            end
 			flash[:success]="Idea Created"
 			redirect_to @idea
 		else
@@ -37,6 +44,14 @@ class IdeasController < ApplicationController
 
 	def update
 		if @idea.update_attributes(idea_params)
+			Skill.count.times do |i|
+        		unless params[:skill]==nil
+        			if params[:skill][i.to_s] =='1'
+              		@idea.requirements.create!(idea_id: @idea
+              			.id, skill_id: i)
+        			end
+        		end
+            end
 			flash[:success] = "Idea Updated"
 			redirect_to @idea
 		else
@@ -51,6 +66,8 @@ class IdeasController < ApplicationController
 	end
 
 	private 
+
+
 
 	def idea_params
 		params.require(:idea).permit(:name, :user_id, :description)

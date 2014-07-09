@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
     memberships.find_by(team_id: team.id).destroy
   end 
 
+   def findSkill(user)
+    skills = []
+    user.skillsets.each do |skillset|
+      skills.push(Skill.find(skillset.skill_id).name)
+    end 
+    skills
+  end
+
   private
 
   	def create_remember_token
