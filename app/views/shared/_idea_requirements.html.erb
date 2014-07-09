@@ -2,14 +2,14 @@
 <div class='team_stats'>
  
     <strong id="Ideas" class="stat">
-      <%= @user.skillsets.count %> Skills
+      <%= @idea.requirements.count %> Skills
       
     </strong>
  </div>
  <div class="user">
  	<% skills = [] %>
- 	<% @user.skillsets.each do |skillset| %>
- 		<% skills.push(Skill.find(skillset.skill_id).name) %>
+ 	<% @idea.requirements.each do |requirement| %>
+ 		<% skills.push(Skill.find(requirement.skill_id).name) %>
  	<% end %>
  	<% skills.each do |skill| %>
  		<div class="text-success">
@@ -17,4 +17,5 @@
  		</div>
  	<% end %>
 
+ 
  

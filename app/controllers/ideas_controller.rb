@@ -27,7 +27,7 @@ class IdeasController < ApplicationController
 			Skill.count.times do |i|
         		unless params[:skill]==nil
         			if params[:skill][i.to_s] =='1'
-              		@idea.requirements.create!(idea_id: @idea.id, skill_id: i)
+              		@idea.requirements.create!(idea_id: @idea.id, skill_id: (i+1))
         			end
         		end
             end
@@ -48,7 +48,7 @@ class IdeasController < ApplicationController
         		unless params[:skill]==nil
         			if params[:skill][i.to_s] =='1'
               		@idea.requirements.create!(idea_id: @idea
-              			.id, skill_id: i)
+              			.id, skill_id: (i+1))
         			end
         		end
             end
