@@ -1,4 +1,4 @@
-PuzzlePiece::Application.routes.draw do
+SampleApp::Application.routes.draw do
   post "teams/:id" => "teams#show"
   post "ideas/:id" => "ideas#show"
   resources :ideas
