@@ -1,11 +1,4 @@
 <% @user ||= current_user %>
-<div class='team_stats'>
- 
-    <strong id="Ideas" class="stat">
-      <%= @idea.requirements.count %> Skills
-      
-    </strong>
- </div>
  <div class="user">
  	<% skills = [] %>
  	<% @idea.requirements.each do |requirement| %>

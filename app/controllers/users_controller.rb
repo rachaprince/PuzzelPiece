@@ -48,12 +48,10 @@ before_action :admin_user, only: :destroy
     if @user.update_attributes(user_params)
       Skill.count.times do |i|
         unless params[:skill]==nil
-        if params[:skill][i.to_s] =='1'
-          
-         @user.skillsets.create!(user_id: @user.id, skill_id: i)
+          if params[:skill][i.to_s] =='1'
+            @user.skillsets.create!(user_id: @user.id, skill_id: i)
+          end        
         end
-        
-      end
       end
       flash[:success] = "Profile updated"
       redirect_to @user
