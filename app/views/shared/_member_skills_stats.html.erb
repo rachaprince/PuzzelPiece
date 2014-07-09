@@ -1,0 +1,14 @@
+<% skills = [] %>
+<% @team.users.each do |user| %>
+	<% user.skillsets.each do |skillset| %>
+		<% unless skills.include?(Skill.find(skillset.skill_id).name) %>
+	 		<% skills.push(Skill.find(skillset.skill_id).name) %>
+	 	<% end %>
+	 <% end %>
+<% end %>
+
+<% skills.each do |skill| %>
+	<div class="text-success">
+	<%= skill %>
+	</div>
+<% end %>

@@ -1,9 +1,80 @@
 class User < ActiveRecord::Base
-	before_save { self.email = email.downcase }
-	before_save { self.name = name.downcase}
-	validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
-	has_secure_password
-	validates :password, length: { minimum: 6 }
+	has_many :microposts, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+  has_one :wall, dependent: :destroy
+  has_many :wallposts, dependent: :destroy
+  has_and_belongs_to_many :teams
+  has_many :memberships, dependent: :destroy
+  has_many :teams, through: :memberships
+  has_many :messages
+  has_many :ideas 
+  has_many :skillsets
+  has_many :skills, through: :skillsets
+
+
+
+  before_save{ self.email = email.downcase }
+	before_create :create_remember_token
+	validates :name, presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+  									uniqueness: { case_sensitive: false }
+  has_secure_password
+ 	validates :password, length: { minimum: 6 }
+
+  def addMember(user) 
+    @team.users << user
+  end
+
+ 	def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.digest(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def feed
+    Micropost.from_users_followed_by(self)
+  end
+
+
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end 
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end 
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end 
+
+  def member?(team)
+    memberships.find_by(team_id: team.id)
+  end 
+
+  def leave_team!(team)
+    memberships.find_by(team_id: team.id).destroy
+  end 
+
+   def findSkill(user)
+    skills = []
+    user.skillsets.each do |skillset|
+      skills.push(Skill.find(skillset.skill_id).name)
+    end 
+    skills
+  end
+
+  private
+
+  	def create_remember_token
+  		self.remember_token = User.digest(User.new_remember_token)
+  	end
 end

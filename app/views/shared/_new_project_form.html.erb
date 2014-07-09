@@ -1,0 +1,5 @@
+  <%= form_tag do %>
+  		<%= label_tag "Give your Idea to a Team"  %>
+      	<%= text_field_tag :name ,nil, placeholder: "Team name" %>
+        <%= submit_tag "Assign Team", class: "btn btn-medium btn-primary" %>
+    <% end %>

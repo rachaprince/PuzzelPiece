@@ -1,0 +1,14 @@
+<% @user ||= current_user %>
+<div class='team_stats'>
+ 
+    <strong id="Ideas" class="stat">
+      <%= @user.ideas.count %> Ideas
+      
+    </strong>
+ </div>
+ <div class="user">
+ <%= render  @ideas  %>
+ </div>
+ <% if current_user==@user %>
+  <%= link_to "Create Idea", new_idea_path, class: "btn btn-medium btn-primary white"   %>
+<%end%>

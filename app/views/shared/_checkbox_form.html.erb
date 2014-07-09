@@ -1,0 +1,4 @@
+<% Skill.count.times do |i| %>
+  <%= label_tag Skill.find(i+1).name %>
+  <%= check_box_tag "skill[#{i}]" %> <br />
+<% end %>

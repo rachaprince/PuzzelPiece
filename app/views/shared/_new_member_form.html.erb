@@ -1,0 +1,5 @@
+   <%= form_tag do %>
+  		<%= label_tag "Add a Member To Your Team"  %>
+      	<%= text_field_tag :email,nil, placeholder: "email" %>
+        <%= submit_tag "Add Member", class: "btn btn-medium btn-primary" %>
+    <% end %>

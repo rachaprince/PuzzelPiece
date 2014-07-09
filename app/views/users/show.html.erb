@@ -1,5 +1,37 @@
 <% provide(:title, @user.name) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+     <section>
+      <%= render 'shared/stats' %>
+    </section>
+
+    <%= render 'follow_form' if signed_in? %>
+    <section>
+      <%= render 'shared/team_stats' %>
+      </section>
+      <section>
+      <%= render 'shared/idea_stats' %>
+      </section>
+      <%= render 'shared/skills_stats' %>
+  </aside>
+    <div class="span6">
+    <% unless @user.wall.blank? %>
+      <h3><%=@user.name%>'s Wall</h3>
+    <%= render 'shared/wallpost_form' %>  
+      <% @wallposts.each do |wallpost| %>
+        <ol class="microposts">
+        <%= link_to gravatar_small(User.find(wallpost.user_id)), User.find(wallpost.user_id) %>
+          <%= link_to User.find(wallpost.user_id).name, User.find(wallpost.user_id) %>
+          <%= render wallpost %>
+        </ol>
+      <% end %>
+      <%= will_paginate @wallposts, inner_window: 1 %>
+    <% end %>
+  </div>
+</div>

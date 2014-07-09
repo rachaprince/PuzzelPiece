@@ -1,0 +1,10 @@
+<%= form_for([@messageboard,@message]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Write a message..." %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-small btn-primary" %>
+<% end %>
