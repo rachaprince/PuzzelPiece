@@ -39,10 +39,11 @@ class IdeasController < ApplicationController
 	end
 
 	def edit
-
+		@idea= Idea.find(params[:id])
 	end
 
 	def update
+		@idea= Idea.find(params[:id])
 		if @idea.update_attributes(idea_params)
 			Skill.count.times do |i|
         		unless params[:skill]==nil
