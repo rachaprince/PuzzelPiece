@@ -1,5 +1,5 @@
 
-<% if @team.users.include?(User.find(current_user.id)) %>
+
 <% provide(:title, @team.name) %>
 <div class="row">
   <aside class="span4">
@@ -42,31 +42,5 @@
         </div>
       </div>
 </div>
-<% else %>
-<% provide(:title, @team.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @team.name %>
-      </h1>
-    </section>
-    <section class="users">
-     Members: <%= render @users %>
-    </section>
-     <section class="users">
-    Ideas: <%= render @ideas %>
-    </section>
-  </aside>
-  <div class="text-center hero-unit span6 pull-right">
-    <aside>
-      <h3><%=@team.name%>'s Bio</h3>
-      <%= @team.bio %>
-    </aside>
-  </div>
-  <div class="hero-unit span6 pull-right">
-    <h3> Projects</h3>
-  </div>
-</div>
-<% end %>
+
 
